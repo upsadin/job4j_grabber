@@ -15,15 +15,13 @@ public class HabrCareerParse {
     private static final String PAGE_LINK = String.format("%s/vacancies/java_developer?page=", SOURCE_LINK);
 
     private String retrieveDescription(String link) {
-        Connection connection = Jsoup.connect(link);
-        Document document = null;
-        try {
-            document = connection.get();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Elements descr = document.select(".vacancy-description__text");
-        return descr.text();
+        String result = "";
+           try {
+               result = Jsoup.connect(link).get().select(".vacancy-description__text").text();
+           } catch (IOException e) {
+               e.printStackTrace();
+           }
+        return result;
     }
 
     public static void main(String[] args) throws IOException {
