@@ -1,7 +1,7 @@
 CREATE TABLE if not exists post(
 id serial primary key,
-name varchar(50),
-text varchar(250),
-link varchar(200) UNIQUE,
+name text,
+text text,
+link text UNIQUE,
 created timestamp
 );
