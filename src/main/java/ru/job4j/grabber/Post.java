@@ -88,7 +88,7 @@ public class Post {
         return "Post{"
                 + "id=" + id
                 + ", title='" + title + '\''
-                + ", link='" + link + System.lineSeparator()
+                + ", link=" + link + System.lineSeparator()
                 + ", created=" + created
                 + ", description='" + description + '\''
                 + '}';
