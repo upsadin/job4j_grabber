@@ -61,12 +61,4 @@ public class HabrCareerParse implements Parse {
         String date = dateElement.attr("datetime");
         return new Post(vacancyName, aLink, description, dateTimeParser.parse(date));
     }
-
-    public static void main(String[] args) throws IOException {
-        HabrCareerParse habrParse = new HabrCareerParse(new HabrCareerDateTimeParser());
-        List<Post> l = habrParse.list(SOURCE_LINK);
-        for (Post post : l) {
-            System.out.println(post);
-        }
-    }
 }

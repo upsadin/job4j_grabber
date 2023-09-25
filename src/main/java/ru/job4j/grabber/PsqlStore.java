@@ -97,27 +97,4 @@ public class PsqlStore implements Store {
                 rs.getTimestamp("created").toLocalDateTime()
         );
     }
-
-    public static void main(String[] args) {
-        Properties config = new Properties();
-        try (InputStream in = PsqlStore.class.getClassLoader().getResourceAsStream("psqlstore.properties")) {
-            config.load(in);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        PsqlStore store = new PsqlStore(config);
-        Post post1 = new Post("post1", "http://1.ru", "this is post 1",
-                LocalDateTime.of(2023, Month.JULY, 29, 19, 30, 40));
-        Post post2 = new Post("post2", "http://2.ru", "this is post 2",
-                LocalDateTime.of(2023, Month.SEPTEMBER, 1, 1, 23, 56));
-        Post post5 = new Post("post5", "http://2.ru", "this is post 5",
-                LocalDateTime.of(2023, Month.SEPTEMBER, 1, 1, 23, 56));
-        store.save(post1);
-        store.save(post2);
-        store.save(post5);
-        System.out.println("Post with id 1:");
-        System.out.println(store.findById(1));
-        System.out.println("All posts:");
-        System.out.println(store.getAll());
-    }
 }
