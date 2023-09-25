@@ -18,21 +18,14 @@ public class Grabber implements Grab {
     private Parse parse;
     private Store store;
     private Scheduler scheduler;
-    private int time;
     private Properties cfg = new Properties();
-
-    public Grabber(Parse parse, Store store, Scheduler scheduler, int time) {
-        this.parse = parse;
-        this.store = store;
-        this.scheduler = scheduler;
-        this.time = time;
-    }
 
     public Grabber() {
     }
 
     @Override
     public void init(Parse parse, Store store, Scheduler scheduler) throws SchedulerException {
+        int time = Integer.parseInt(cfg.getProperty("time"));
         JobDataMap data = new JobDataMap();
         data.put("store", store);
         data.put("parse", parse);
@@ -107,7 +100,6 @@ public class Grabber implements Grab {
         grab.cfg();
         Scheduler scheduler = grab.scheduler();
         Store store = grab.store();
-        grab.time = 5000;
         grab.init(new HabrCareerParse(new HabrCareerDateTimeParser()), store, scheduler);
         grab.web(store);
     }
